@@ -52,7 +52,7 @@ function construct_cfg()
 function generate_cfg()
 {
     installtools
-    osd_disk_list=getdiskinfo
+    osd_disk_list=`getdiskinfo`
     construct_cfg &> $cfgname
     if [[ $? != 0 ]]; then
         echo "construct_cfg error"
@@ -81,7 +81,7 @@ function warmup_disks()
             ;;
         esac
     else
-        ret=generate_cfg
+        ret=`generate_cfg`
         if [[ $ret != 0 ]]; then
             echo "Can not create $cfgname"
             exit 1
