@@ -22,7 +22,6 @@ function echo_global_section()
     echo "sync=1"
     echo "iodepth=64"
     echo "numjobs=16"
-    echo "group_reporting"
     echo "norandommap"
     echo "randrepeat=0"
     echo "rw=randwrite"
@@ -63,7 +62,8 @@ function eval_raidc()
 {
     local hostname=`hostname|cut -d. -f1`
     cfgname="fio-raidc-${hostname}.cfg"
-    local ret
+    local date=`date --rfc-3339=seconds | sed "s/ /_/g"`
+    logname=${hostname}-evalraidc-16job64dep-${date}
 
     # Need to regenerate config file
     if [[ -e $cfgname ]]; then
@@ -94,7 +94,7 @@ function eval_raidc()
     case $confirm in
     [Yy][Ee][Ss])
 	if [[ -e $cfgname ]];then
-	    fio $cfgname
+	    fio $cfgname > ${logname}.log
 	fi
 	;;
     *)
