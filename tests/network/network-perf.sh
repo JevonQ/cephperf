@@ -21,7 +21,7 @@ function stop_iperfserver()
 {
 	local server=$1
 	timeout $timeout_val scp kill-iperf.sh root@$server:/tmp/
-	ssh root@$server "sh /tmp/kill-iperf.sh"
+	timeout $timeout_val ssh root@$server "sh /tmp/kill-iperf.sh"
 }
 
 function print_array()
