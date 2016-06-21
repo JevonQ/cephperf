@@ -10,7 +10,7 @@ if [[ `which ceph-deploy` != 0 ]]; then
 fi
 
 # config ceph repo for centos 7.1 only
-ceph-deploy repo --repo-url $REPOURL $CLUSTERNAME $HOSTAME
+ceph-deploy repo --repo-url $REPOURL $CLUSTERNAME $HOSTNAME
 
 function create_cluster()
 {
